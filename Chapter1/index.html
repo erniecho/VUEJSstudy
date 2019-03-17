@@ -6,11 +6,25 @@
 <body>
 <script src=../node_modules/vue/dist/vue.js></script> //if have the JavaScript in you file you could just use your own vue.js
 <div id=root>
-<p>Is this an Hello world?</p>
+<p>{{ message }}</p> //Display message
 </div>
 <!-- Some JavaScript -->
 <script>
 console.log('Yes! We are using Vue version', Vue.version)
+// New Vue instance
+var app = new Vue({
+  // CSS selector of the root DOM element
+  el: '#root',
+  //Name of your instance.
+  name: 'MyApp',
+  // Some data
+  data () {
+    return {
+      message: 'Hello Vue.js',
+    }
+  },
+})
+app.$mount('#root')
 </script>
 </body>
 </html>
