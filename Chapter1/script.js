@@ -20,8 +20,9 @@ new Vue({
     watch: {
         // Watching 'content' data preoperty
         content: {
-            handler (val, oldVal) {
+            content (val, oldVal) {
                 console.log('new note:', val, 'old note:', oldVal)
+                localStorage.setItem('content', val)
             },
         },
     },
