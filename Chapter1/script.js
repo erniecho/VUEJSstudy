@@ -7,7 +7,9 @@ new Vue({
         return {
             content: 'This is a note.',
         }
+        
     },
+    template: '<div>{{ notePreview }}</div>' ,
     // Computed properties
     computed: {
         notePreview () {
@@ -16,14 +18,24 @@ new Vue({
         },
     },
 
+    methods: {
+        saveNote (val) {
+            console.log('new note:', val, 'old note:', oldVal)
+            console.log('saving note:', val)
+            localStorage.setItem('content', val)
+            this.reportOperation('saving')
+        },
+    },
 
+    // Change watchers
     watch: {
         // Watching 'content' data preoperty
         content: {
-            content (val, oldVal) {
-                console.log('new note:', val, 'old note:', oldVal)
-                localStorage.setItem('content', val)
-            },
+          handler: 'saveNote',
         },
+    },
+
+    reportOperation (opName) {
+        console.log('The', opName, 'operation was completed!')
     },
 })
