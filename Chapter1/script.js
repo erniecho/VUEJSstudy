@@ -1,5 +1,5 @@
 // New VueJS instance
-new Vue({
+var vm = new Vue({
     //CSS selector of the root DOM element
     el: '#notebook',
     // Some data
@@ -19,10 +19,9 @@ new Vue({
     },
 
     methods: {
-        saveNote (val) {
-            console.log('new note:', val, 'old note:', oldVal)
-            console.log('saving note:', val)
-            localStorage.setItem('content', val)
+        saveNote () {
+            console.log('saving note:', this.content)
+            localStorage.setItem('content', this.content)
             this.reportOperation('saving')
         },
     },
@@ -30,8 +29,10 @@ new Vue({
     // Change watchers
     watch: {
         // Watching 'content' data preoperty
-        content: {
-          handler: 'saveNote',
+        content (val, oldVal) {
+          console.log('new note:', val, 'old note:', oldVal)
+          console.log('saving note:', this.content)
+          localStorage.setItem('content', this.content)
         },
     },
 
